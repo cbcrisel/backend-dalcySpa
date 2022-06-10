@@ -17,6 +17,7 @@ class Server{
 
     routes(){
         this.app.use(require('../routes/user'));
+        this.app.use(require('../routes/service'));
     }
 
     start(){
