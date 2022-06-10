@@ -22,8 +22,32 @@ const getTurnsOfAService= async(req=request,res=response)=>{
     }
 }
 
+const postService = async(req, res) => {
+    try {
+        const {nombre, id_categoria} = req.body;
+
+        const queryCategory = await pool.query(`select id from categoria where id=${id_categoria}`);
+
+        if(queryCategory.rows.length > 0){
+            const queryService = await pool.query(`insert into servicio(nombre,id_categoria) values ('${nombre}','${id_categoria}')`);
+            res.json({
+                message: 'Servicio Registrado',
+                body: {
+                    servicio: req.body
+                }
+            });
+        }else{
+            res.json({
+                message: 'Id de Categoria no encontrado!'
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({message: error});
+    }
+}
 
 
 module.exports={
-    getTurnsOfAService
+    getTurnsOfAService, postService
 }
