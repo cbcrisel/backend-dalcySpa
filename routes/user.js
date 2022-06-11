@@ -6,5 +6,6 @@ const router= Router();
 router.post('/api/postUserE',postUserE);
 router.post('/api/postUserC',postUserC);
 router.post('/api/login',login);
+router.get('/api/getEsteticistas',);
 
 module.exports=router;

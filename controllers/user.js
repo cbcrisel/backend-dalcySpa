@@ -93,6 +93,21 @@ const login= async(req=request,res=response)=>{
     }
 }
 
+const getEsteticistas= async(req=request,res=response)=>{
+    try {
+        const esteticistas= await pool.query(`SELECT persona.nombre, persona.apellido,telefono 
+                                                FROM persona,esteticista
+                                                WHERE persona.id= esteticista.id_persona` 
+        );
+        res.json({
+            esteticistas: esteticistas.rows
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({message:error});
+    }
+}
+
 module.exports={
-    postUserE,postUserC,login
+    postUserE,postUserC,login,getEsteticistas
 }
