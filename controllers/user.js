@@ -13,7 +13,6 @@ const postUserE= async(req=request,res=response)=>{
 
 
         let pswd = bcrypt.hashSync(password,salt); 
-        console.log("hola");
         const queryP = await pool.query( `INSERT INTO persona(ci,nombre,apellido,telefono) VALUES('${ci}','${nombre}','${apellido}','${telefono}') returning id`);
 
         const queryE = await pool.query( `INSERT INTO esteticista(id_persona) VALUES(${queryP.rows[0].id}) `);
