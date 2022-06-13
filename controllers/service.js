@@ -47,7 +47,24 @@ const postService = async(req, res) => {
     }
 }
 
+const getServicesByCategory = async(req=request,res=response) => {
+  try {
+    const {id_categoria}=req.body;
+    const query = await pool.query(`SELECT id,nombre FROM servicio WHERE id_categoria=${id_categoria}`);
+    res.json({
+        message: 'Servicios encontrados',
+        body: {
+            services: query.rows
+        }
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.json({message:error});
+  }    
+}
+
 
 module.exports={
-    getTurnsOfAService, postService
+    getTurnsOfAService, postService,getServicesByCategory
 }
