@@ -6,6 +6,6 @@ const router= Router();
 
 router.get('/api/turnsOfService/:id_servicio',getTurnsOfAService);
 router.post('/api/postService',postService);
-router.get('/api/getServicesByCategory',getServicesByCategory);
+router.post('/api/getServicesByCategory',getServicesByCategory);
 
 module.exports=router;
