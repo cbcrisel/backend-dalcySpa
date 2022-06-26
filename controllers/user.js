@@ -107,6 +107,8 @@ const getEsteticistas= async(req=request,res=response)=>{
     }
 }
 
+
+
 module.exports={
     postUserE,postUserC,login,getEsteticistas
 }

@@ -21,6 +21,7 @@ class Server{
         this.app.use(require('../routes/appointment'));
         this.app.use(require('../routes/category'));
         this.app.use(require('../routes/turn'));
+        this.app.use(require('../routes/observation'))
     }
 
     start(){

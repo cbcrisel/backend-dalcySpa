@@ -35,14 +35,14 @@ const validateJWT=async(req= request, res=response,next)=>{
         const { id }= jwt.verify(token, process.env.SECRETPRIVATEKEY);
         const result= await pool.query('SELECT * FROM usuario WHERE id=$1',[id]);
         const user= result.rows[0];
-        console.log(user);
+        //console.log(user);
         if (!user){
             res.status(401).json({
                 msg: 'Token no valido - Usuario no existe'
             });
         }
         req.body.id_user=id
-        console.log(req.body.id_user);
+        //console.log(req.body.id_user);
         next();
     } catch (error) {
         console.log(error);
