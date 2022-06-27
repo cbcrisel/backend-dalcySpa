@@ -20,7 +20,26 @@ const postObservation=async(req=request, res=response)=>{
     }
 }
 
+const getObservationByAppointment=async(req=request, res=response)=>{
+    try {
+        const {id_cita}=req.params;
+        console.log(id_cita)
+        const query = await pool.query(`SELECT s.id,s.diagnostico, s.descripcion,p.nombre, p.apellido,e.id_persona,c.id as id_cita
+                                        FROM seguimiento_cita as s, cita as c, esteticista as e, persona as p
+                                        WHERE s.id_cita=c.id and s.id_cita=${id_cita} and e.id_persona=p.id and c.id_esteticista=e.id_persona`)
+        res.json({
+            message: 'Seguimientos obtenidos',
+            body: {
+                observations: query.rows
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({message:error});
+    }
+}
+
 
 module.exports={
-    postObservation
+    postObservation,getObservationByAppointment
 }
