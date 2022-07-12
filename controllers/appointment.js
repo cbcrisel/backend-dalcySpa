@@ -19,6 +19,7 @@ const postAppointment= async(req=request,res=response)=>{
         citaInformation.id_esteticista= queryEsteticista.rows[0].nombre;
         citaInformation.fecha=fecha;
         const email= agendarCita(citaInformation,id_cliente.rows[0]);
+        console.log(fecha);
         res.json({
             message: 'Cita creada',
             body: {
