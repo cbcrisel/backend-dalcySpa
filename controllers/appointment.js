@@ -7,6 +7,7 @@ const { agendarCita } = require('../helpers/email');
 
 const postAppointment= async(req=request,res=response)=>{
     try {
+        console.log(req.body)
         const {descripcion,id_turno,fecha,id_user,id_esteticista,id_servicio}=req.body;
         const queryTurno= await pool.query(`SELECT hora_inicio FROM turno WHERE id=${id_turno}`);
         const queryServicio= await pool.query(`SELECT nombre FROM servicio WHERE id=${id_servicio}`);
