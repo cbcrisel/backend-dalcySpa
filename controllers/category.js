@@ -25,7 +25,7 @@ const postCategory  = async(req, res) => {
 const getCateogies = async(req, res) => {
     try {
         const queryGetCategories = await pool.query('select id,nombre from categoria');
-
+        console.log( queryGetCategories.rows)
         res.json(
             {
                 message: 'Categorias',
